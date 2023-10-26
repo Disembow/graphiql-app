@@ -20,6 +20,7 @@ const LanguageBar = () => {
       color="dark"
       bg={'transparent'}
       mr={'0.6rem'}
+      mt={'0.15rem'}
     />
   );
 };
