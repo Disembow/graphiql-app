@@ -6,18 +6,21 @@ import {
   toggleIsQueryLvl,
   toggleIsIdLvl,
   toggleIsCharacterLvl,
+  toggleIsQuerySubLvl,
 } from '../../../../../app/slices/docsSlise';
 
 const СharactersByIds = () => {
   const dispatch = useAppDispatch();
 
-  const goToId = () => {
+  const goToId = (flag: 'goto' | 'goback') => {
     dispatch(toggleIsQueryLvl());
-    dispatch(toggleIsIdLvl(true));
+    dispatch(toggleIsQuerySubLvl(flag === 'goto'));
+    dispatch(toggleIsIdLvl(flag === 'goto'));
   };
 
   const clickHandler = () => {
     dispatch(toggleIsQueryLvl());
+    dispatch(toggleIsQuerySubLvl(false));
     dispatch(toggleIsCharacterLvl(true));
   };
 
@@ -33,7 +36,7 @@ const СharactersByIds = () => {
           list={true}
           listNonNull={true}
           lastArg={true}
-          callback={goToId}
+          callback={() => goToId('goto')}
         />
         <span>&nbsp;):&nbsp;[</span>
         <span className={styles.link} onClick={clickHandler}>
