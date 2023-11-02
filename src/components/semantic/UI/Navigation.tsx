@@ -9,10 +9,12 @@ import { toggleRegType } from '../../../app/slices/authSlice';
 import { useAppDispatch } from '../../../app/hooks';
 import cookie from 'cookie';
 import styles from '../Header.module.scss';
+import { useAuth } from '../../../utils/hooks/useAuth';
 
 const Navigation = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { isAuth } = useAuth();
   const { t } = useTranslation();
 
   const handleSignIn = () => {
@@ -47,7 +49,7 @@ const Navigation = () => {
         styles={stylesLink}
         label={t('navHome')}
         onClick={() => navigate(MainRoutes.WelcomePage)}
-        icon={<IconHome2 size="1rem" stroke={1.5} />}
+        icon={<IconHome2 size="1rem" stroke={2.5} />}
       />
       <NavLinkUi
         w={'8.5rem'}
@@ -57,27 +59,33 @@ const Navigation = () => {
         icon={<IconDatabaseSearch size={'1.1rem'} />}
       />
       <LanguageBar />
-      <NavLinkUi
-        w={'8.5rem'}
-        styles={stylesLink}
-        label={t('signup')}
-        onClick={handleSignIn}
-        icon={<IconLogin size={'1.2rem'} />}
-      />
-      <NavLinkUi
-        w={'8.5rem'}
-        styles={stylesLink}
-        label={t('login')}
-        onClick={handleLogIn}
-        icon={<IconLogin size={'1.2rem'} />}
-      />
-      <NavLinkUi
-        w={'8.5rem'}
-        styles={stylesLink}
-        label={t('logout')}
-        onClick={handleLogout}
-        icon={<IconLogout size={'1.2rem'} />}
-      />
+      {!isAuth && (
+        <NavLinkUi
+          w={'8.5rem'}
+          styles={stylesLink}
+          label={t('signup')}
+          onClick={handleSignIn}
+          icon={<IconLogin size={'1.2rem'} />}
+        />
+      )}
+      {!isAuth && (
+        <NavLinkUi
+          w={'8.5rem'}
+          styles={stylesLink}
+          label={t('login')}
+          onClick={handleLogIn}
+          icon={<IconLogin size={'1.2rem'} />}
+        />
+      )}
+      {isAuth && (
+        <NavLinkUi
+          w={'8.5rem'}
+          styles={stylesLink}
+          label={t('logout')}
+          onClick={handleLogout}
+          icon={<IconLogout size={'1.2rem'} />}
+        />
+      )}
     </div>
   );
 };

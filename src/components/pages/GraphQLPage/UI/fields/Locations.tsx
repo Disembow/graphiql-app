@@ -7,6 +7,7 @@ import {
   toggleIsLocationFilter,
   toggleIsLocationsLvl,
   toggleIsQueryLvl,
+  toggleIsQuerySubLvl,
 } from '../../../../../app/slices/docsSlise';
 
 const Locations = () => {
@@ -14,11 +15,13 @@ const Locations = () => {
 
   const goToInt = () => {
     dispatch(toggleIsQueryLvl());
+    dispatch(toggleIsQuerySubLvl(true));
     dispatch(toggleIsIntLvl(true));
   };
 
   const clickHandler = () => {
     dispatch(toggleIsQueryLvl());
+    dispatch(toggleIsQuerySubLvl(false));
     dispatch(toggleIsLocationsLvl(true));
   };
 

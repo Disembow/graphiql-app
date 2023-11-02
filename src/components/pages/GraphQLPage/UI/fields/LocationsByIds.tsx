@@ -5,19 +5,22 @@ import {
   toggleIsQueryLvl,
   toggleIsIdLvl,
   toggleIsLocationLvl,
+  toggleIsQuerySubLvl,
 } from '../../../../../app/slices/docsSlise';
 import { useAppDispatch } from '../../../../../app/hooks';
 
 const LocationsByIds = () => {
   const dispatch = useAppDispatch();
 
-  const goToId = () => {
+  const goToId = (flag: 'goto' | 'goback') => {
     dispatch(toggleIsQueryLvl());
-    dispatch(toggleIsIdLvl(true));
+    dispatch(toggleIsQuerySubLvl(flag === 'goto'));
+    dispatch(toggleIsIdLvl(flag === 'goto'));
   };
 
   const clickHandler = () => {
     dispatch(toggleIsQueryLvl());
+    dispatch(toggleIsQuerySubLvl(false));
     dispatch(toggleIsLocationLvl(true));
   };
 
@@ -33,7 +36,7 @@ const LocationsByIds = () => {
           list={true}
           listNonNull={true}
           lastArg={true}
-          callback={goToId}
+          callback={() => goToId('goto')}
         />
         <span>&nbsp;):&nbsp;[</span>
         <span className={styles.link} onClick={clickHandler}>
