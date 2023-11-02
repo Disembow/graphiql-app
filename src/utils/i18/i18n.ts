@@ -11,6 +11,7 @@ i18next
   .use(Backend)
   .init({
     debug: false,
+    lng: 'en',
     fallbackLng: 'en',
     resources: {
       en: {
