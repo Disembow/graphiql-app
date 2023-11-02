@@ -6,7 +6,7 @@ import cookie from 'cookie';
 import styles from './WelcomePage.module.scss';
 import { Trans, useTranslation } from 'react-i18next';
 import { Center, List } from '@mantine/core';
-import { IconBrandGithub, IconClipboardList, IconError404, IconSchool } from '@tabler/icons-react';
+import { IconBrandGithub, IconClipboardList, IconSchool } from '@tabler/icons-react';
 
 const WelcomePage = () => {
   const { isAuth } = useAuth();
@@ -24,19 +24,15 @@ const WelcomePage = () => {
       <h4 className={styles.title}>{t('aboutTeamTitle')}</h4>
       <List size="xl">
         <List.Item mb={'0.5rem'} icon={<IconBrandGithub size={'1.7rem'} />}>
-          <Link className={styles.link} to={'https://github.com/KirillGenin'}>
-            {t('kirill')}
-          </Link>
-        </List.Item>
-
-        <List.Item mb={'0.5rem'} icon={<IconBrandGithub size={'1.7rem'} />}>
           <Link className={styles.link} to={'https://github.com/Disembow'}>
             {t('yauhen')}
           </Link>
         </List.Item>
 
-        <List.Item mb={'0.5rem'} icon={<IconError404 size={'1.7rem'} />}>
-          {t('dinara')}
+        <List.Item mb={'0.5rem'} icon={<IconBrandGithub size={'1.7rem'} />}>
+          <Link className={styles.link} to={'https://github.com/KirillGenin'}>
+            {t('kirill')}
+          </Link>
         </List.Item>
 
         <List.Item mb={'0.5rem'} icon={<IconClipboardList size={'1.7rem'} />}>
