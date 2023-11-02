@@ -17,8 +17,18 @@ interface IInitState {
   activeTab: string;
 }
 
+const defaultQuery = `{
+  characters {
+    results {
+      id
+      name
+      status
+    }
+  }
+}`;
+
 const initialState: IInitState = {
-  query: '',
+  query: defaultQuery,
   response: '',
   variables: '',
   headers: '',
