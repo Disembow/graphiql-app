@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { URL } from './docsSlise';
 
 interface RequestData {
   query: string;
@@ -79,7 +80,7 @@ export const fetchGraphQLData = createAsyncThunk<string, RequestData, { rejectVa
   'graphiql/fetchData',
   async function (request, { rejectWithValue }) {
     try {
-      const res = await fetch(`https://rickandmortyapi.com/graphql`, {
+      const res = await fetch(URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
